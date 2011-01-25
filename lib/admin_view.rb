@@ -1,3 +1,0 @@
-module AdminView
-  # Your code goes here...
-end

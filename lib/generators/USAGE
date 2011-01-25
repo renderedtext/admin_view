@@ -1,0 +1,8 @@
+Description:
+    Generates chaos
+
+Example:
+    rails generate admin_view Model
+
+    This will create:
+        what/will/it/create

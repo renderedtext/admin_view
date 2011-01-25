@@ -1,0 +1,12 @@
+<%%= f.error_messages %>
+
+<% @attributes.each do |attribute| -%>
+  <% next if ["id", "created_at", "updated_at"].include?(attribute.name) -%>
+  <p>
+    <%%= f.label :<%= attribute.name %> %><br />
+    <%%= f.text_field :<%= attribute.name %> %>
+  </p>
+<% end -%>
+
+<%% label = @<%= singular_table_name %>.new_record? ? "Create" : "Update" -%>
+<%%= f.submit label %>

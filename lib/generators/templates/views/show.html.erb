@@ -1,0 +1,11 @@
+<h1><%= human_name.capitalize %> <%%= @<%= singular_table_name %>.id %></h1>
+
+<% @attributes.each do |attribute| -%>
+<p>
+  <strong><%= attribute.human_name %>:</strong>
+  <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+</p>
+<% end -%>
+
+<%%= link_to "Edit", edit_admin_<%= singular_table_name %>_path(@<%= singular_table_name %>) %> |
+<%%= link_to "Back", admin_<%= plural_table_name %>_path %>

@@ -1,0 +1,36 @@
+<h2><%= human_name.pluralize %></h2>
+
+<%%= form_for @search, :url => admin_<%= plural_table_name %>_path, :html => {:method => :get} do |f| %>
+  <%%= f.label :todo, "Search" %>
+  <%%= f.text_field :todo %>
+  <%%= f.submit %>
+<%% end %>
+
+<p><%%= link_to("Create a new <%= human_name %>", new_admin_<%= singular_table_name %>_path) %></p>
+
+<table class="sortable">
+  <thead>
+    <tr>
+<% @attributes.each do |attribute| -%>
+      <th><%%= sortable "<%= attribute.name %>" %></th>
+<% end -%>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr>
+        <td><%%= link_to(<%= singular_table_name %>.id, admin_<%= singular_table_name %>_path(<%= singular_table_name %>)) %></td>
+<% @attributes.each do |attribute| -%>
+<% next if attribute.name == "id" -%>
+        <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+<% end -%>
+        <td><%%= link_to('Edit', edit_admin_<%= singular_table_name %>_path(<%= singular_table_name %>)) %></td>
+        <td><%%= link_to('Delete', admin_<%= singular_table_name %>_path(<%= singular_table_name %>), :confirm => "Are you sure?", :method => :delete) %></td>
+      </tr>
+    <%% end %>
+  </tbody>
+</table>
+
+<%%= will_paginate @<%= plural_table_name %> %>
