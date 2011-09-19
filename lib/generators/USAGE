@@ -1,8 +1,5 @@
 Description:
-    Generates chaos
+    Generates a CRUD admin controller, views and specs for an existing model.
 
 Example:
-    rails generate admin_view Model
-
-    This will create:
-        what/will/it/create
+    rails generate admin_view Model [--search_by column_name]

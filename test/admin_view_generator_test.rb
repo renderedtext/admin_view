@@ -9,7 +9,7 @@ class AdminViewGeneratorTest < Rails::Generators::TestCase
   tests AdminViewGenerator
  
   test "create the controllers and specs" do
-    run_generator %w(User)
+    run_generator %w(User --search_by email)
 
     assert_file "app/controllers/admin/base_controller.rb", /class Admin::BaseController < ApplicationController/
     assert_file "app/controllers/admin/users_controller.rb", /class Admin::UsersController < Admin::BaseController/

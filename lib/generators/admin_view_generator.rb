@@ -7,6 +7,8 @@ class AdminViewGenerator < Rails::Generators::NamedBase
 
   source_root File.expand_path('../templates', __FILE__)
 
+  class_option :search_by, :type => :string, :desc => "The field or criteria to meta_search by (not required, but without a doubt recommended)"
+
   def create_base_controller
     empty_directory "app/controllers/admin"
     path = File.join("app/controllers/admin", "base_controller.rb")
@@ -29,7 +31,7 @@ class AdminViewGenerator < Rails::Generators::NamedBase
 
   def create_views
     empty_directory "app/views/admin/#{controller_file_name}"
-    if class_name.is_a?(ActiveRecord::Base)
+    if model_exists?(class_name)
       @attributes = class_name.constantize.send(:columns)
       available_views.each do |view|
         template "views/#{view}.html.erb", File.join("app/views/admin", controller_file_name, "#{view}.html.erb")
@@ -49,6 +51,15 @@ class AdminViewGenerator < Rails::Generators::NamedBase
 
   def available_views
     ["index", "new", "show", "edit", "_form"]
+  end
+
+  def model_exists?(klass_name)
+    begin
+      klass = Module.const_get(klass_name)
+      return klass.superclass == ActiveRecord::Base
+    rescue NameError
+      return false
+    end
   end
 
 end

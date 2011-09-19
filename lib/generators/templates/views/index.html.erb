@@ -1,9 +1,16 @@
 <h2><%= human_name.pluralize %></h2>
 
 <%%= form_for @search, :url => admin_<%= plural_table_name %>_path, :html => {:method => :get} do |f| %>
-  <%%= f.label :todo, "Search" %>
-  <%%= f.text_field :todo %>
+  <% if options[:search_by].blank? -%>
+  <!--
+  <% end %>
+  <!-- feel free to add further search options, eg foo_or_bar_contains -->
+  <%%= f.label :<%= options[:search_by] %>_contains, "Search by <%= options[:search_by] %>" %>
+  <%%= f.text_field :<%= options[:search_by] %>_contains %>
   <%%= f.submit %>
+  <% if options[:search_by].blank? -%>
+  --><p>Set up your search form or delete.</p>
+  <% end %>
 <%% end %>
 
 <p><%%= link_to("Create a new <%= human_name %>", new_admin_<%= singular_table_name %>_path) %></p>
