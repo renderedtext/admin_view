@@ -29,13 +29,16 @@ class AdminViewGenerator < Rails::Generators::NamedBase
 
   def create_views
     empty_directory "app/views/admin/#{controller_file_name}"
-    @attributes = class_name.constantize.send(:columns)
-    available_views.each do |view|
-      template "views/#{view}.html.erb", File.join("app/views/admin", controller_file_name, "#{view}.html.erb")
+    if class_name.is_a?(ActiveRecord::Base)
+      @attributes = class_name.constantize.send(:columns)
+      available_views.each do |view|
+        template "views/#{view}.html.erb", File.join("app/views/admin", controller_file_name, "#{view}.html.erb")
+      end
     end
   end
 
   def add_resource_route
+    return if not File.exists?("config/routes.rb")
     route_config =  "namespace :admin do "
     route_config << "resources :#{file_name.pluralize}"
     route_config << " end"
