@@ -6,7 +6,7 @@ It uses [meta_search](https://github.com/ernie/meta_search) for search and [kami
 
 Screenshot:
 
-![admin_view example screenshot](http://d.pr/80Ks+)
+![admin_view example screenshot](http://renderedtext.com/images/blog/admin_view.png)
 
 ## Usage
 
@@ -18,7 +18,7 @@ Run the generator:
 
 	$ bundle exec admin_view User --search_by name_or_email
 
-The `--search_by` option is not required - if you don't pass it, the form template will come out commented out. However, it's useful most of the times, and you can use any meta_search-compatible expression to search in string or text fields.
+The `--search_by` option is not required - if you don't pass it, the form template will come out commented out. However, it's useful most of the time, and you can use any meta_search-compatible expression to search in string or text fields.
 
 ## Contributing
 
