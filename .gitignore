@@ -1,6 +1,7 @@
-pkg/*
 *.gem
+*.swp
 .bundle
 Gemfile.lock
+bundle/
+pkg/*
 tmp/
-*.swp

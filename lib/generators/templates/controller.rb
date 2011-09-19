@@ -4,11 +4,10 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
 
   before_filter :find_<%= singular_table_name %>, :only => [:edit, :update, :show, :destroy]
 
-  PER_PAGE = 50
-
   def index
     @search = <%= class_name %>.search(params[:search])
-    @<%= plural_table_name %> =  find_<%= plural_table_name %>
+    search_relation = @search.relation
+    @<%= plural_table_name %> =  search_relation.order(sort_column + " " + sort_direction).page params[:page]
   end
 
   def new
@@ -49,19 +48,12 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
     @<%= singular_table_name %> = <%= class_name %>.find(params[:id])
   end
 
-  private
-
-  def find_<%= plural_table_name %>
-    search_relation = @search.relation
-    search_relation.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => PER_PAGE)
+  def sort_column
+    <%= class_name %>.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
   end
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-  end
-
-  def sort_column
-    <%= class_name %>.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
   end
 
   def search_params
