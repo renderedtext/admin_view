@@ -1,4 +1,4 @@
-class Admin::<%= controller_class_name %>Controller < Admin::AdminController
+class Admin::<%= controller_class_name %>Controller < Admin::BaseController
 
   helper_method :sort_column, :sort_direction, :search_params
 
@@ -18,7 +18,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::AdminController
   def create
     @<%= singular_table_name %> = <%= class_name %>.new(params[:<%= singular_table_name %>])
     if @<%= singular_table_name %>.save
-      redirect_to admin_<%= plural_table_name %>_path, :notice => "Successfully created <%= human_name %>."
+      redirect_to admin_<%= plural_table_name %>_path, :notice => "Successfully created <%= human_name.downcase %>."
     else
       render :new
     end
@@ -32,7 +32,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::AdminController
 
   def update
     if @<%= singular_table_name %>.update_attributes(params[:<%= singular_table_name %>])
-      redirect_to admin_<%= plural_table_name %>_path, :notice => "Successfully updated <%= human_name %>."
+      redirect_to admin_<%= plural_table_name %>_path, :notice => "Successfully updated <%= human_name.downcase %>."
     else
       render :edit
     end
