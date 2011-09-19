@@ -6,8 +6,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
 
   def index
     @search = <%= class_name %>.search(params[:search])
-    search_relation = @search.relation
-    @<%= plural_table_name %> =  search_relation.order(sort_column + " " + sort_direction).page params[:page]
+    @<%= plural_table_name %> = find_<%= plural_table_name %>
   end
 
   def new
@@ -46,6 +45,11 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
 
   def find_<%= singular_table_name %>
     @<%= singular_table_name %> = <%= class_name %>.find(params[:id])
+  end
+
+  def find_<%= plural_table_name %>
+    search_relation = @search.relation
+    search_relation.order(sort_column + " " + sort_direction).page params[:page]
   end
 
   def sort_column
