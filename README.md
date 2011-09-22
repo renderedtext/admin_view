@@ -1,6 +1,6 @@
 # admin_view
 
-Rails 3 generator of CRUD admin controllers, views and specs for existing models.
+Rails 3 generator of CRUD admin controllers, views and specs for existing ActiveRecord models.
 
 It uses [meta_search](https://github.com/ernie/meta_search) for search and [kaminari](https://github.com/amatsuda/kaminari) for pagination.
 
