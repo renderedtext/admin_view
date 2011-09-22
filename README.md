@@ -16,7 +16,7 @@ Include it in your Gemfile:
 
 Run the generator:
 
-	$ bundle exec admin_view User --search_by name_or_email
+	$ bundle exec rails g admin_view User --search_by name_or_email
 
 The `--search_by` option is not required - if you don't pass it, the form template will come out commented out. However, it's useful most of the time, and you can use any meta_search-compatible expression to search in string or text fields.
 
