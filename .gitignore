@@ -1,5 +1,6 @@
 *.gem
 *.swp
+.DS_Store
 .bundle
 Gemfile.lock
 bundle/

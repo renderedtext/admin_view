@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link href="./admin.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+  <div id="container">
+
+    <div class="helpNav">
+      <a href="/">← Homepage </a>
+    </div>
+
+    <ul class="subNav">
+  <a href="#">Users</a> |
+  <a href="#">Skills</a>
+</ul>
+
+
+      <p id="flash_notice" class="notice">Something happenned successfully.</p>
+
+      <p id="flash_alert" class="alert">Something wasn't right.</p>
+
+
+    <h1>Users</h1>
+
+<form accept-charset="UTF-8" action="/admin/users" class="user_search" id="user_search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+  <label for="search_email_contains">Search</label>
+  <input id="search_email_contains" name="search[email_contains]" size="30" type="text" />
+  <input name="commit" type="submit" value="Create Search" />
+</form>
+<table class="sortable">
+  <thead>
+    <tr>
+      <th><a href="/admin/users?direction=asc&amp;sort=id">Id</a></th>
+      <th><a href="/admin/users?direction=desc&amp;sort=email" class="current asc">Email</a></th>
+      <th><a href="/admin/users?direction=asc&amp;sort=created_at">Signed up</a></th>
+      <th><a href="/admin/users?direction=asc&amp;sort=sign_in_count">Times signed in</a></th>
+      <th><a href="/admin/users?direction=asc&amp;sort=last_sign_in_at">Last signed in</a></th>
+      <th><a href="/admin/users?direction=asc&amp;sort=last_sign_in_ip">Last sign in IP</a></th>
+      <th>Edit</th>
+      <th>Destroy</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr class="user">
+        <td>5</td>
+        <td><a href="/admin/users/5">joe@gmail.com</a></td>
+        <td>September 21, 2011</td>
+        <td>1</td>
+          <td>Wednesday, Sep 21 2011</td>
+        <td>10.0.2.2</td>
+        <td><a href="/admin/users/5/edit">Edit</a></td>
+        <td><a href="/admin/users/5" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Destroy</a></td>
+      </tr>
+      <tr class="user">
+        <td>7</td>
+        <td><a href="/admin/users/7">kimi@gmail.com</a></td>
+        <td>September 21, 2011</td>
+        <td>0</td>
+          <td>N/A</td>
+        <td></td>
+        <td><a href="/admin/users/7/edit">Edit</a></td>
+        <td><a href="/admin/users/7" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Destroy</a></td>
+      </tr>
+      <tr class="user">
+        <td>8</td>
+        <td><a href="/admin/users/8">laura@gmail.com</a></td>
+        <td>September 21, 2011</td>
+        <td>1</td>
+          <td>Wednesday, Sep 21 2011</td>
+        <td>10.0.2.2</td>
+        <td><a href="/admin/users/8/edit">Edit</a></td>
+        <td><a href="/admin/users/8" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Destroy</a></td>
+      </tr>
+      <tr class="user">
+        <td>3</td>
+        <td><a href="/admin/users/3">marko@renderedtext.com</a></td>
+        <td>September 14, 2011</td>
+        <td>17</td>
+          <td>Wednesday, Sep 21 2011</td>
+        <td>10.0.2.2</td>
+        <td><a href="/admin/users/3/edit">Edit</a></td>
+        <td><a href="/admin/users/3" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Destroy</a></td>
+      </tr>
+      <tr class="user">
+        <td>9</td>
+        <td><a href="/admin/users/9">vladimir@renderedtext.com</a></td>
+        <td>September 21, 2011</td>
+        <td>1</td>
+          <td>Wednesday, Sep 21 2011</td>
+        <td>10.0.2.2</td>
+        <td><a href="/admin/users/9/edit">Edit</a></td>
+        <td><a href="/admin/users/9" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Destroy</a></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+  </div>
+
+</body>
+</html>
