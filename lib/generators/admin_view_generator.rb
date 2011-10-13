@@ -9,6 +9,8 @@ class AdminViewGenerator < Rails::Generators::NamedBase
 
   class_option :search_by, :type => :string, :desc => "The field or criteria to meta_search by (not required, but without a doubt recommended)"
 
+  class_option :no_create, :type => :boolean, :default => false, :desc => "Don't allow admin to create a new record."
+
   def create_base_controller
     empty_directory "app/controllers/admin"
     path = File.join("app/controllers/admin", "base_controller.rb")
@@ -31,11 +33,9 @@ class AdminViewGenerator < Rails::Generators::NamedBase
 
   def create_views
     empty_directory "app/views/admin/#{controller_file_name}"
-    if model_exists?(class_name)
-      @attributes = class_name.constantize.send(:columns)
-      available_views.each do |view|
-        template "views/#{view}.html.erb", File.join("app/views/admin", controller_file_name, "#{view}.html.erb")
-      end
+    @attributes = get_model_columns
+    available_views.each do |view|
+      template "views/#{view}.html.erb", File.join("app/views/admin", controller_file_name, "#{view}.html.erb")
     end
   end
 
@@ -50,7 +50,9 @@ class AdminViewGenerator < Rails::Generators::NamedBase
   protected
 
   def available_views
-    ["index", "new", "show", "edit", "_form"]
+    views = ["index", "new", "show", "edit", "_form"]
+    views.delete("new") if options[:no_create] == true
+    views
   end
 
   def model_exists?(klass_name)
@@ -59,6 +61,14 @@ class AdminViewGenerator < Rails::Generators::NamedBase
       return klass.superclass == ActiveRecord::Base
     rescue NameError
       return false
+    end
+  end
+
+  def get_model_columns
+    if model_exists?(class_name)
+      class_name.constantize.send(:columns)
+    else
+      [] # allow user (and test) to generate the view files
     end
   end
 

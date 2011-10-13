@@ -9,6 +9,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
     @<%= plural_table_name %> = find_<%= plural_table_name %>
   end
 
+  <% unless options[:no_create] == true %>
   def new
     @<%= singular_table_name %> = <%= class_name %>.new
   end
@@ -21,6 +22,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
       render :new
     end
   end
+  <% end -%>
 
   def show
   end

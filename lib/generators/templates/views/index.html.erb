@@ -13,7 +13,9 @@
   <% end %>
 <%% end %>
 
+<% unless options[:no_create] == true %>
 <p><%%= link_to("Create a new <%= human_name %>", new_admin_<%= singular_table_name %>_path) %></p>
+<% end -%>
 
 <table class="sortable">
   <thead>
