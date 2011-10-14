@@ -27,5 +27,11 @@ class AdminViewGeneratorTest < Rails::Generators::TestCase
     run_generator %w(User --no_create)
 
     assert_no_file "app/views/admin/users/new.html.erb"
+    content = File.read("tmp/app/views/admin/users/index.html.erb")
+    assert content !~ /Create a new/
+
+    content = File.read("tmp/app/controllers/admin/users_controller.rb")
+    assert content !~ /def new/
+    assert content !~ /def create/
   end
 end
