@@ -20,6 +20,11 @@ Run the generator:
 
 The `--search_by` option is not required - if you don't pass it, the form template will come out commented out. However, it's useful most of the time, and you can use any meta_search-compatible expression to search in string or text fields.
 
+Other options available are:
+
+* `--no_create` - omit functionality to create a new record
+* `--read_only` - omit create, edit and update functionality
+
 ## Contributing
 
 Yes! Feel free to fork the repo, make your changes in a topic branch and send us a pull request.

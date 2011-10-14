@@ -9,9 +9,9 @@ class AdminViewGenerator < Rails::Generators::NamedBase
 
   class_option :search_by, :type => :string, :desc => "The field or criteria to meta_search by (not required, but without a doubt recommended)"
 
-  class_option :no_create, :type => :boolean, :default => false, :desc => "Don't allow admin to create a new record."
+  class_option :no_create, :type => :boolean, :default => false, :desc => "Omit functionality to create a new record."
 
-  class_option :read_only, :type => :boolean, :default => false, :desc => "Skip create, edit and update functionality."
+  class_option :read_only, :type => :boolean, :default => false, :desc => "Omit create, edit and update functionality."
 
   def create_base_controller
     empty_directory "app/controllers/admin"
