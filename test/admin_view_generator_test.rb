@@ -20,6 +20,7 @@ class AdminViewGeneratorTest < Rails::Generators::TestCase
     assert_file "app/views/admin/users/new.html.erb"
     assert_file "app/views/admin/users/edit.html.erb"
     assert_file "app/views/admin/users/_form.html.erb"
+    assert_file "app/helpers/admin/base_helper.rb", /def sortable/
   end
 
   test "--no-create option skips assets to create new record" do

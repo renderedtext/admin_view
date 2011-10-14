@@ -31,6 +31,11 @@ class AdminViewGenerator < Rails::Generators::NamedBase
     template "controller_spec.rb", File.join("spec/controllers/admin", "#{controller_file_name}_controller_spec.rb")
   end
 
+  def create_helper
+    empty_directory "app/helpers/admin"
+    template "base_helper.rb", File.join("app/helpers/admin", "base_helper.rb")
+  end
+
   def create_views
     empty_directory "app/views/admin/#{controller_file_name}"
     @attributes = get_model_columns
