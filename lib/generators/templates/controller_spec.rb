@@ -26,19 +26,11 @@ describe Admin::<%= controller_class_name %>Controller do
     end
   end
 
-  <% unless options[:read_only] %>
+  <% unless options[:no_create] or options[:read_only] %>
   describe "GET new" do
     it "assigns a new <%= singular_table_name %> as @<%= singular_table_name %>" do
       <%= class_name %>.stub(:new) { mock_<%= singular_table_name %> }
       get :new
-      assigns(:<%= singular_table_name %>).should be(mock_<%= singular_table_name %>)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested <%= singular_table_name %> as @<%= singular_table_name %>" do
-      <%= class_name %>.stub(:find).with("37") { mock_<%= singular_table_name %> }
-      get :edit, :id => "37"
       assigns(:<%= singular_table_name %>).should be(mock_<%= singular_table_name %>)
     end
   end
@@ -73,6 +65,16 @@ describe Admin::<%= controller_class_name %>Controller do
       end
     end
 
+  end
+  <% end -%>
+
+  <% unless options[:read_only] %>
+  describe "GET edit" do
+    it "assigns the requested <%= singular_table_name %> as @<%= singular_table_name %>" do
+      <%= class_name %>.stub(:find).with("37") { mock_<%= singular_table_name %> }
+      get :edit, :id => "37"
+      assigns(:<%= singular_table_name %>).should be(mock_<%= singular_table_name %>)
+    end
   end
 
   describe "PUT update" do

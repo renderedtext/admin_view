@@ -34,6 +34,10 @@ class AdminViewGeneratorTest < Rails::Generators::TestCase
     content = File.read("tmp/app/controllers/admin/users_controller.rb")
     assert content !~ /def new/
     assert content !~ /def create/
+
+    controller_spec_content = File.read("tmp/spec/controllers/admin/users_controller_spec.rb")
+    assert controller_spec_content !~ /GET new/
+    assert controller_spec_content !~ /POST create/
   end
 
   test "--read_only skips create, edit and update" do
