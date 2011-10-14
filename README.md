@@ -2,7 +2,7 @@
 
 Rails 3 generator of CRUD admin controllers, views and specs for existing ActiveRecord models.
 
-It uses [meta_search](https://github.com/ernie/meta_search) for search and [kaminari](https://github.com/amatsuda/kaminari) for pagination.
+It uses [meta_search](https://github.com/ernie/meta_search) for search and [kaminari](https://github.com/amatsuda/kaminari) for pagination. It also assumes that you have [dynamic_form](https://github.com/joelmoss/dynamic_form) plugin installed.
 
 Screenshot:
 
