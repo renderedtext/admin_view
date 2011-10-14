@@ -2,14 +2,14 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
 
   helper_method :sort_column, :sort_direction, :search_params
 
-  before_filter :find_<%= singular_table_name %>, :only => [:edit, :update, :show, :destroy]
+  before_filter :find_<%= singular_table_name %>, :only => [<% unless options[:read_only] %>:edit, :update,<% end %> :show, :destroy]
 
   def index
     @search = <%= class_name %>.search(params[:search])
     @<%= plural_table_name %> = find_<%= plural_table_name %>
   end
 
-  <% unless options[:no_create] == true %>
+  <% unless options[:no_create] or options[:read_only] %>
   def new
     @<%= singular_table_name %> = <%= class_name %>.new
   end
@@ -27,6 +27,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
   def show
   end
 
+  <% unless options[:read_only] %>
   def edit
   end
 
@@ -37,6 +38,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
       render :edit
     end
   end
+  <% end -%>
 
   def destroy
     @<%= singular_table_name %>.destroy

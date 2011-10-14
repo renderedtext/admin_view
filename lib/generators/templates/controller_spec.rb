@@ -26,6 +26,7 @@ describe Admin::<%= controller_class_name %>Controller do
     end
   end
 
+  <% unless options[:read_only] %>
   describe "GET new" do
     it "assigns a new <%= singular_table_name %> as @<%= singular_table_name %>" do
       <%= class_name %>.stub(:new) { mock_<%= singular_table_name %> }
@@ -111,6 +112,7 @@ describe Admin::<%= controller_class_name %>Controller do
     end
 
   end
+  <% end -%>
 
   describe "DELETE destroy" do
     it "destroys the requested <%= singular_table_name %>" do
