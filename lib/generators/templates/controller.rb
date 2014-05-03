@@ -1,15 +1,15 @@
 class Admin::<%= controller_class_name %>Controller < Admin::BaseController
 
-  helper_method :sort_column, :sort_direction, :search_params
+  helper_method :sort_column, :sort_direction
 
   before_filter :find_<%= singular_table_name %>, :only => [<% unless options[:read_only] %>:edit, :update,<% end %> :show, :destroy]
 
   def index
-    @search = <%= class_name %>.search(params[:search])
+    @q = <%= class_name %>.search(params[:q])
     @<%= plural_table_name %> = find_<%= plural_table_name %>
   end
 
-  <% unless options[:no_create] or options[:read_only] %>
+<% unless options[:no_create] || options[:read_only] %>
   def new
     @<%= singular_table_name %> = <%= class_name %>.new
   end
@@ -22,12 +22,12 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
       render :new
     end
   end
-  <% end -%>
+<% end -%>
 
   def show
   end
 
-  <% unless options[:read_only] %>
+<% unless options[:read_only] -%>
   def edit
   end
 
@@ -38,11 +38,11 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
       render :edit
     end
   end
-  <% end -%>
+<% end -%>
 
   def destroy
     @<%= singular_table_name %>.destroy
-    redirect_to admin_<%= plural_table_name %>_path, :notice => "<%= human_name %> has been deleted."
+    redirect_to admin_<%= plural_table_name %>_path, :notice => "<%= human_name %> deleted."
   end
 
   protected
@@ -52,8 +52,8 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
   end
 
   def find_<%= plural_table_name %>
-    search_relation = @search.relation
-    search_relation.order(sort_column + " " + sort_direction).page params[:page]
+    search_relation = @q.result
+    @<%= plural_table_name %> = search_relation.order(sort_column + " " + sort_direction).references(:<%= singular_table_name %>).page params[:page]
   end
 
   def sort_column
@@ -62,10 +62,6 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-  end
-
-  def search_params
-    {:search => params[:search]}
   end
 
 end

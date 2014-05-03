@@ -1,8 +1,10 @@
 # admin_view
 
-Rails 3 generator of CRUD admin controllers, views and specs for existing ActiveRecord models.
+Rails 4 generator of CRUD admin controllers, views and specs for existing ActiveRecord models.
 
-It uses [meta_search](https://github.com/ernie/meta_search) for search and [kaminari](https://github.com/amatsuda/kaminari) for pagination. It also assumes that you have [dynamic_form](https://github.com/joelmoss/dynamic_form) plugin installed.
+It uses [ransack](https://github.com/activerecord-hackery/ransack) for search and [kaminari](https://github.com/amatsuda/kaminari) for pagination.
+
+The produced markup in views is compatible with [Bootstrap 3](http://getbootstrap.com).
 
 Screenshot:
 
@@ -18,7 +20,7 @@ Run the generator:
 
 	$ bundle exec rails g admin_view User --search_by name_or_email
 
-The `--search_by` option is not required - if you don't pass it, the form template will come out commented out. However, it's useful most of the time, and you can use any meta_search-compatible expression to search in string or text fields.
+The `--search_by` option is not required. However, it's useful most of the time, and you can use any ransack-compatible expression to search in string or text fields.
 
 Other options available are:
 
@@ -33,4 +35,4 @@ If you're having a problem or found a bug, please open an issue in the GitHub [i
 
 ## License
 
-Copyright © 2011 [Rendered Text](http://renderedtext.com). admin_view is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
+Copyright © 2011-2014 [Rendered Text](http://renderedtext.com). admin_view is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
