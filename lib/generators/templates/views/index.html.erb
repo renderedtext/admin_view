@@ -1,29 +1,28 @@
-<h2><%= human_name.pluralize %></h2>
+<div class="page-header">
+  <h1><%= human_name.pluralize %></h1>
+</div>
 
-<%%= form_for @search, :url => admin_<%= plural_table_name %>_path, :html => {:method => :get} do |f| %>
-  <% if options[:search_by].blank? -%>
-  <!--
-  <% end %>
-  <!-- feel free to add further search options, eg foo_or_bar_contains -->
-  <%%= f.label :<%= options[:search_by] %>_contains, "Search by <%= options[:search_by] %>" %>
-  <%%= f.text_field :<%= options[:search_by] %>_contains %>
-  <%%= f.submit %>
-  <% if options[:search_by].blank? -%>
-  --><p>Set up your search form or delete.</p>
-  <% end %>
+<% if options[:search_by].present? -%>
+<%%= search_form_for @q, :url => admin_<%= plural_table_name %>_path, :html => { :method => :get, :class => "well form-inline" } do |f| %>
+  <div class="form-group">
+    <%%= f.text_field :<%= options[:search_by] %>_cont, :type => "search", :class => "form-control", :placeholder => "Search by <%= options[:search_by] %>" %>
+  </div>
+
+  <%%= f.submit "Search", :class => "btn btn-default" %>
 <%% end %>
+<% end -%>
 
-<% unless options[:no_create] or options[:read_only] %>
+<% unless options[:no_create] || options[:read_only] %>
 <p><%%= link_to("Create a new <%= human_name %>", new_admin_<%= singular_table_name %>_path) %></p>
 <% end -%>
 
-<table class="sortable">
+<table class="sortable table table-striped table-bordered table-condensed">
   <thead>
     <tr>
 <% @attributes.each do |attribute| -%>
       <th><%%= sortable "<%= attribute.name %>" %></th>
 <% end -%>
-<% unless options[:read_only] %>
+<% unless options[:read_only] -%>
       <th>Edit</th>
 <% end -%>
       <th>Delete</th>
@@ -31,13 +30,13 @@
   </thead>
   <tbody>
     <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
-      <tr>
+      <tr class="<%= singular_table_name %>">
         <td><%%= link_to(<%= singular_table_name %>.id, admin_<%= singular_table_name %>_path(<%= singular_table_name %>)) %></td>
 <% @attributes.each do |attribute| -%>
 <% next if attribute.name == "id" -%>
         <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
 <% end -%>
-<% unless options[:read_only] %>
+<% unless options[:read_only] -%>
         <td><%%= link_to('Edit', edit_admin_<%= singular_table_name %>_path(<%= singular_table_name %>)) %></td>
 <% end -%>
         <td><%%= link_to('Delete', admin_<%= singular_table_name %>_path(<%= singular_table_name %>), :confirm => "Are you sure?", :method => :delete) %></td>
