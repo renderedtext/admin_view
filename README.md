@@ -1,6 +1,6 @@
 # admin_view
 
-Rails 4 generator of CRUD admin controllers, views and specs for existing ActiveRecord models.
+Rails 4 generator of CRUD admin controllers, views and specs for existing ActiveRecord models. It helps you get the data on screen immediately, so you can customize the specifics to your liking.
 
 It uses [ransack](https://github.com/activerecord-hackery/ransack) for search and [kaminari](https://github.com/amatsuda/kaminari) for pagination.
 
@@ -8,7 +8,7 @@ The produced markup in views is compatible with [Bootstrap 3](http://getbootstra
 
 Screenshot:
 
-![admin_view example screenshot](http://renderedtext.com/images/blog/admin_view.png)
+![admin_view example screenshot](http://cl.ly/image/1o3n1P153V0O/Screen%20Shot%202014-05-16%20at%2014.57.29%20.png)
 
 ## Usage
 
