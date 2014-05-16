@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Marko Anastasov", "Darko Fabijan"]
   s.email       = ["devs@renderedtext.com"]
   s.homepage    = "http://github.com/renderedtext/admin_view"
-  s.summary     = %q{Rails 4 generator of admin views and controllers for existing models.}
-  s.description = %q{Rails 4 generator of admin views and controllers for existing models.}
+  s.summary     = %q{Admin view code generator for Rails.}
+  s.description = %q{Code generator of admin views and controllers for ActiveRecord models.}
 
   s.rubyforge_project = "admin_view"
 
@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency("rails", ">= 4.0")
-  s.add_dependency("ransack", ">= 1.2")
-  s.add_dependency("kaminari", ">= 0.15")
-  s.add_development_dependency("rspec-rails", ">= 2.4.0")
+  s.add_dependency("rails", "~> 4.0")
+  s.add_dependency("ransack", "~> 1.2")
+  s.add_dependency("kaminari", "~> 0.15")
+  s.add_development_dependency("rspec-rails", "~> 2.4")
 end
