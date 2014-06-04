@@ -26,6 +26,7 @@ class AdminViewGenerator < Rails::Generators::NamedBase
   end
 
   def create_controller
+    @attributes_symbols = get_model_columns.dup.delete_if {|attribute| ['id', 'created_at', 'updated_at'].include? attribute.name }.collect {|attribute| ":#{attribute.name}" }
     template "controller.rb", File.join("app/controllers/admin", "#{controller_file_name}_controller.rb")
   end
 
