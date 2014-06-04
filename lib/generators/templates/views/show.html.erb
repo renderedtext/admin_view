@@ -17,7 +17,7 @@
 <% unless options[:read_only] -%>
       <%%= link_to "Edit", edit_admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), :class => "btn btn-default" %>
 <% end -%>
-      <%%= link_to("Delete", admin_user_path(@user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger btn-xs") %>
+      <%%= link_to "Back", admin_<%= plural_table_name %>_path %>
     </td>
   </tr>
 </table>
