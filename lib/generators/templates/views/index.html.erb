@@ -24,8 +24,8 @@
 <% end -%>
 <% unless options[:read_only] -%>
       <th>Edit</th>
-<% end -%>
       <th>Delete</th>
+<% end -%>
     </tr>
   </thead>
   <tbody>
@@ -38,8 +38,8 @@
 <% end -%>
 <% unless options[:read_only] -%>
         <td><%%= link_to('Edit', edit_admin_<%= singular_table_name %>_path(<%= singular_table_name %>)) %></td>
-<% end -%>
         <td><%%= link_to('Delete', admin_<%= singular_table_name %>_path(<%= singular_table_name %>), :confirm => "Are you sure?", :method => :delete) %></td>
+<% end -%>
       </tr>
     <%% end %>
   </tbody>
