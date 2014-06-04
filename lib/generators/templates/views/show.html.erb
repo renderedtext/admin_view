@@ -11,14 +11,14 @@
     <td><%%= @<%= singular_table_name %>.<%= attribute.name %> %></td>
   </tr>
 <% end -%>
+
+<% unless options[:read_only] -%>
   <tr>
     <td>Actions</td>
     <td>
-<% unless options[:read_only] -%>
       <%%= link_to "Edit", edit_admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), :class => "btn btn-default" %>
-<% end -%>
-      <%%= link_to "Back", admin_<%= plural_table_name %>_path %>
+      <%%= link_to("Delete", admin_<%= singular_table_name %>_path(@<%= singular_table_name %>), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger") %>
     </td>
   </tr>
+<% end -%>
 </table>
-
