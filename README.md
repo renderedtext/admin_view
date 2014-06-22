@@ -33,6 +33,10 @@ Yes! Feel free to fork the repo, make your changes in a topic branch and send us
 
 If you're having a problem or found a bug, please open an issue in the GitHub [issue tracker](https://github.com/renderedtext/admin_view/issues).
 
+## Credits
+
+Big thank you to all [the contributors](https://github.com/renderedtext/admin_view/graphs/contributors)!
+
 ## License
 
 Copyright © 2011-2014 [Rendered Text](http://renderedtext.com). admin_view is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
