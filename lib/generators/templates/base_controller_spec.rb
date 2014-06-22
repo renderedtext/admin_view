@@ -8,8 +8,10 @@ describe Admin::BaseController do
 
       it "renders index page" do
         controller.stub_chain(:current_user, :admin?).and_return(true)
+
         get :index
-        response.should render_template('index')
+
+        expect(response).to render_template('index')
       end
 
     end
@@ -18,9 +20,11 @@ describe Admin::BaseController do
 
       it "renders 404" do
         controller.stub_chain(:current_user, :admin?).and_return(false)
+
         get :index
-        response.should render_template('404.html')
-        response.response_code.should eql(404)
+
+        expect(response).to render_template('404.html')
+        expect(response.response_code).to eql(404)
       end
 
     end
@@ -28,10 +32,12 @@ describe Admin::BaseController do
     context "not logged in" do
 
       it "renders 404" do
-        controller.stub(:current_user).and_return(nil)
+        allow(controller).to receive(:current_user).and_return(nil)
+
         get :index
-        response.should render_template('404.html')
-        response.response_code.should eql(404)
+
+        expect(response).to render_template('404.html')
+        expect(response.response_code).to eql(404)
       end
 
     end
