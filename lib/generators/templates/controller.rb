@@ -15,7 +15,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
   end
 
   def create
-    @<%= singular_table_name %> = <%= class_name %>.new(params[:<%= singular_table_name %>])
+    @<%= singular_table_name %> = <%= class_name %>.new(<%= singular_table_name %>_params)
     if @<%= singular_table_name %>.save
       redirect_to admin_<%= plural_table_name %>_path, :notice => "Successfully created <%= human_name.downcase %>."
     else
@@ -32,7 +32,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
   end
 
   def update
-    if @<%= singular_table_name %>.update_attributes(params[:<%= singular_table_name %>])
+    if @<%= singular_table_name %>.update_attributes(<%= singular_table_name %>_params)
       redirect_to admin_<%= plural_table_name %>_path, :notice => "Successfully updated <%= human_name.downcase %>."
     else
       render :edit
@@ -63,5 +63,14 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
   end
+
+<% unless options[:read_only] -%>
+  private
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def <%= singular_table_name %>_params
+    params.require(:<%= singular_table_name %>).permit(<%= @attributes_symbols.join(",") %>)
+  end
+<% end -%>
 
 end
