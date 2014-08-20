@@ -1,5 +1,7 @@
 # admin_view
 
+<a href="https://semaphoreapp.com/renderedtext/admin_view"><img src="https://semaphoreapp.com/api/v1/projects/c79efd73c074db14c6829472459f2149fad0e068/327/badge.png"></a>
+
 Code generator of CRUD admin controllers, views and specs for existing ActiveRecord models. It helps you get the data on screen immediately, so you can customize the specifics to your liking.
 
 It works with Rails 4 and uses [ransack](https://github.com/activerecord-hackery/ransack) for search and [kaminari](https://github.com/amatsuda/kaminari) for pagination.
