@@ -69,7 +69,7 @@ class Admin::<%= controller_class_name %>Controller < Admin::BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def <%= singular_table_name %>_params
-    params.require(:<%= singular_table_name %>).permit(<%= @attributes_symbols.join(",") %>)
+    params.require(:<%= singular_table_name %>).permit(<%= @attributes_symbols.join(", ") %>)
   end
 <% end -%>
 
